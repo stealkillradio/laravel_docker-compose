@@ -1,0 +1,43 @@
+version: '3'
+services: 
+ nginx:
+  container_name: nginx-appwillio.ru
+  image: nginx:1.12.1
+  ports:
+   - "8088:80"
+  depends_on:
+   - php-fpm
+  volumes:
+   - ./nginx/conf/:/etc/nginx/conf.d/
+   - ./nginx/logs/:/var/log/nginx/
+   - ./public/:/var/www/html/:rw
+  restart: always
+ php-fpm:
+  container_name: php-fpm-appwillio.ru
+  build:
+   context: ./php-fpm
+   dockerfile: Dockerfile
+#  ports:
+#   - "9000:9000"
+  volumes:
+   - ./public/:/var/www/html/:rw
+  links:
+   - mysql:db
+  restart: always
+ mysql:
+  container_name: mysql-appwillio.ru
+  image: mysql:5.7
+  volumes:
+   - ./mysql/:/docker-entrypoint-initdb.d/
+   - ./DB/:/var/lib/mysql/
+  environment:
+   MYSQL_DATABASE: appwilio.ru
+   MYSQL_ROOT_PASSWORD: test
+  restart: always
+# adminer:
+#  container_name: mysql-adminer-appwillio.ru
+#  image: adminer
+#  ports:
+#   - 8089:8080
+#  links:
+#   - mysql:db
