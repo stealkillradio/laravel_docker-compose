@@ -1,6 +1,6 @@
 # Docker for appwilio.ru
 
-Конфигурация контейнеров запуска сайта appwilio.ru
+Конфигурация контейнеров запуска сайта на Laravel
 
 ## Зупуск контейнеров
 
@@ -13,7 +13,7 @@ docker-compose up
 * Установить зависимости:
 
 ```
-docker exec -ti php-fpm-appwillio.ru composer install
+docker exec -ti php-fpm composer install
 ```
 * Сделать папку storage доступной:
 
@@ -23,5 +23,5 @@ chmod -R 777 public/bootstrap
 ```
 
 * Сайт будет доступен по адресу localhost:8088
-* База данных по умолчанию name: appwilio.ru pass: test
+* База данных по умолчанию name: test pass: test
 

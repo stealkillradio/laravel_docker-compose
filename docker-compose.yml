@@ -1,7 +1,7 @@
 version: '3'
 services: 
  nginx:
-  container_name: nginx-appwillio.ru
+  container_name: nginx
   image: nginx:1.12.1
   ports:
    - "8088:80"
@@ -13,7 +13,7 @@ services:
    - ./public/:/var/www/html/:rw
   restart: always
  php-fpm:
-  container_name: php-fpm-appwillio.ru
+  container_name: php-fpm
   build:
    context: ./php-fpm
    dockerfile: Dockerfile
@@ -25,17 +25,17 @@ services:
    - mysql:db
   restart: always
  mysql:
-  container_name: mysql-appwillio.ru
+  container_name: mysql
   image: mysql:5.7
   volumes:
    - ./mysql/:/docker-entrypoint-initdb.d/
    - ./DB/:/var/lib/mysql/
   environment:
-   MYSQL_DATABASE: appwilio.ru
+   MYSQL_DATABASE: test
    MYSQL_ROOT_PASSWORD: test
   restart: always
 # adminer:
-#  container_name: mysql-adminer-appwillio.ru
+#  container_name: mysql-adminer
 #  image: adminer
 #  ports:
 #   - 8089:8080
