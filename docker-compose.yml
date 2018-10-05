@@ -23,6 +23,7 @@ services:
    - ./public/:/var/www/html/:rw
   links:
    - mysql:db
+   - redis:redis
   restart: always
  mysql:
   container_name: mysql
@@ -31,8 +32,15 @@ services:
    - ./mysql/:/docker-entrypoint-initdb.d/
    - ./DB/:/var/lib/mysql/
   environment:
-   MYSQL_DATABASE: test
-   MYSQL_ROOT_PASSWORD: test
+   MYSQL_DATABASE: homestead
+   MYSQL_ROOT_PASSWORD: secret
+  restart: always
+ redis:
+  image: redis:4.0.5-alpine
+  command: ["redis-server", "--appendonly", "yes"]
+  hostname: redis
+  volumes:
+   - ./redis-data:/data
   restart: always
 # adminer:
 #  container_name: mysql-adminer
