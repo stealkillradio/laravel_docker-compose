@@ -23,5 +23,5 @@ chmod -R 777 public/bootstrap
 ```
 
 * Сайт будет доступен по адресу localhost:8088
-* База данных по умолчанию name: test pass: test
+* База данных по умолчанию db_name: homestead user: root pass: secret
 
