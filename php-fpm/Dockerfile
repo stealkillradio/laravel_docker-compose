@@ -9,12 +9,13 @@ RUN apt-get update && apt-get install -y \
 	libjpeg-dev \
 	libpq-dev \
 	libmemcached-dev \
+	libxslt-dev \
 	curl \
 	zip \
 	git
 
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
-RUN docker-php-ext-install mbstring mysqli gd pdo_mysql pdo_pgsql soap xml zip
+RUN docker-php-ext-install mbstring mysqli gd pdo_mysql pdo_pgsql soap xml zip calendar exif gettext pcntl shmop sockets sysvmsg sysvsem sysvshm wddx xsl
 #RUN docker-php-ext-enable memcached
 #RUN echo "ini_set('display_errors', 'Off');" >> /usr/local/etc/php-fpm.conf
 
