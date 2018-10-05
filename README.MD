@@ -1,4 +1,4 @@
-# Docker for appwilio.ru
+# Docker for laravel
 
 Конфигурация контейнеров запуска сайта на Laravel
 
